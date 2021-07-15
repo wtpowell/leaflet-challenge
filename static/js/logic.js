@@ -31,32 +31,32 @@ function onEachFeature (feature,layer) {
   var depth = feature.geometry.coordinates[2]
   var color = ""
   if (depth >= 90) {
-    color = "#FF5135";
+    color = "#08084A";
   }
   else if (depth < 90 && depth >=  70){
-    color = "#FFF14B";
+    color = "#7A3FF8";
   }
   else if (depth < 70 && depth >= 50) {
-    color = "#FF8E15";
+    color = "#6068FF";
   }
   else if (depth <50 && depth  >= 30){
-    color = "#D1FF4B";
+    color = "#A983EC";
   }
   else if (depth < 30 && depth >= 10) {
-    color = "#9CFF33";
+    color = "#22B4E4";
   }
   else {
-    color = "#61FF33";
+    color = "#6BF5A9";
   }
 
   var circlemarkers = []
   circlemarkers.push(
     L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
-      fillOpacity:0.75,
+      fillOpacity:0.5,
       color:"black",
       weight: 0.5,
       fillColor:color,
-      radius: magnitude * 5
+      radius: magnitude * 4
     }).bindPopup("<h3>" + feature.properties.place +"<h3><hr><p>" + new Date(feature.properties.time) + "</p><hr><p> Magnitude: " + feature.properties.mag+"</p>").addTo(myMap));
 
 }
@@ -65,3 +65,4 @@ var earthquake = L.geoJSON(data, {
   onEachFeature: onEachFeature
 });
 };
+//I couldn't get a legend to work properly, I have a meeting with my tutor the day after this assignment is due I will work with them to get a legend established and then request a regrade. 
