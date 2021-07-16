@@ -65,4 +65,22 @@ var earthquake = L.geoJSON(data, {
   onEachFeature: onEachFeature
 });
 };
-//I couldn't get a legend to work properly, I have a meeting with my tutor the day after this assignment is due I will work with them to get a legend established and then request a regrade. 
+var legend = L.control({position: 'bottomleft'});
+
+legend.onAdd = function (myMap) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0, 10, 30, 50, 70, 90],
+        colors = ["#6BF5A9", "#22B4E4", "#A983EC", "#6068FF", "#7A3FF8", "#08084A"];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' +  colors[i] + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+    }
+
+    return div;
+};
+
+legend.addTo(myMap);
